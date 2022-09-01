@@ -1,0 +1,15 @@
+{% extends 'base/styling.html' %}
+{% block content %}
+
+<div class="naslovnica">
+<a href="{% url 'opravila' %}">&#8592;</a>
+</div>
+<div class="opravilo">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="gumb" type="submit" value="Dodaj">
+    </form>
+</div>
+
+{% endblock content %}

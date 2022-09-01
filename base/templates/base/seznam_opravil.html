@@ -1,0 +1,35 @@
+{% extends 'base/styling.html' %}
+{% block content %}
+
+<div class="naslovnica">
+    <div>
+        <h1>Živjo {{request.user|title}}</h1>
+        <h4><a style="color:green; font-size: 20px;" href="{% url 'ustvari-opravilo' %}">&#10009;</a></h4>
+    </div>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'odjava' %}">Odjava</a>
+    {% else %}
+        <a href="{% url 'prijava' %}">Prijava</a>
+    {% endif %}
+</div>
+
+<div>
+    {% for opravilo in opravila %}
+    <div class="opravilo">
+        {% if opravilo.opravljeno %}
+        <s><a href="{% url 'posodobi-opravilo' opravilo.id %}">{{opravilo}}</a></s>
+        <a class="brisanje" href="{% url 'izbrisi-opravilo' opravilo.id %}">&#10005;</a>
+        {% else %}
+        <a href="{% url 'posodobi-opravilo' opravilo.id %}">{{opravilo}}</a>
+        <a class="brisanje" href="{% url 'izbrisi-opravilo' opravilo.id %}">&#10005;</a>
+        {% endif %}
+    </div>
+
+    {% empty %}
+    <div class = 'ni_opravil'>
+        <h3>Ni opravil</h3>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

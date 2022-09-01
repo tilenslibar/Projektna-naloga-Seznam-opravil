@@ -1,0 +1,14 @@
+{% extends 'base/styling.html' %}
+{% block content %}
+
+<div class="naslovnica">
+    <a href="{% url 'opravila' %}">&#8592;</a>
+</div>
+<div class="opravilo">
+    <form method="post">
+        {% csrf_token %}
+        <p>Si prepričan, da želiš izbrisati to opravilo?  "{{opravilo}}"</p>
+        <input class="gumb" type="submit" value="Izbriši"/>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base/styling.html' %}
+{% block content %}
+<div class="naslovnica">
+<h1>Registracija</h1>
+</div>
+<div class="opravilo">
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="gumb" type="submit" value="Registracija">
+</form>
+
+<p>Imaš račun?<a style="color:red; padding:20px" href="{% url 'prijava' %}">Prijava</a></p>
+</div>
+{% endblock content %}
